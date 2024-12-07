@@ -17,6 +17,7 @@
     "@pinia/nuxt": "^0.5.4",
     "@quasar/extras": "^1.16.12",
     "@vue-flow/core": "^1.41.2",
+    "axios": "^1.7.9",
     "dagre": "^0.8.5",
     "express": "^4.21.0",
     "lodash": "^4.17.21",

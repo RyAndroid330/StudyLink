@@ -3,7 +3,7 @@
     class="q-pa-none"
     style="position: relative; height: 100vh; width: 100vw; padding-top: 10px !important; padding-left: 10px !important;"
   >
-    <div class="polka" style="height: 110dvh; width: 110vw;">
+    <div class="polka" style="min-width: 100dvw;min-height: 100dvh; height:fit-content; width:fit-content;">
       <div class="q-pa-none " style="height: 100%; display: flex; flex-direction: column;">
         <div class="" style=" font-size: 1.5rem;">
           <slot name="title" />

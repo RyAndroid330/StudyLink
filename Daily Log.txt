@@ -2,11 +2,11 @@
   -Setup Git repository and installed frameworks
   -worked on Figma design and user flow
 **Dec 4th**
-  -
+  -Had to finish Lab 2
 **Dec 5th**
-  -
+  -Started to create a functional Frontend
 **Dec 6th**
-  -
+  -Fixed Bible component and started Worship component
 **Dec 7th**
   -Satudary
 **Dec 8th**
