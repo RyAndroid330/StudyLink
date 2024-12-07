@@ -1,182 +1,82 @@
-<!-- <template>
-  <div>
-    <h1>Songs List</h1>
-    <ul v-if="songs.length > 0">
-      <li v-for="song in songs" :key="song.key">
-        <h2>{{ song.title }}</h2>
-        <p><strong>Author:</strong> {{ song.authors }}</p>
-        <p><strong>Category:</strong> {{ song.category }}</p>
-        <p><strong>Tempo:</strong> {{ song.tempo }}</p>
-        <p><strong>Intensity:</strong> {{ song.intensity }}</p>
-        <a :href="song.youtube" target="_blank">YouTube</a>
-      </li>
-    </ul>
-    <p v-else>No songs found.</p>
-  </div>
-</template>
-
-<script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import * as glide from "@glideapps/tables";
-
-const songsTable = glide.table({
-  token: "6f05e843-7c43-4732-a4d4-f02bef5b999c",
-  app: "1gyXOzTnc4NRn66JpwIG",
-  table: "Songs",
-  columns: {
-    title: { type: "string", name: "Title" },
-    authors: { type: "string", name: "Author" },
-    category: { type: "string", name: "Category" },
-    youtube: { type: "uri", name: "aa3d1b20090697af0c1b6d6160904685" },
-    intensity: { type: "string", name: "Intensivity" },
-    tempo: { type: "number", name: "Tempo" },
-    key: { type: "string", name: "290612199861c31d1036b185b4e69b75" }
-  }
-});
-
-const songs = ref<Array<Record<string, any>>>([]);
-
-onMounted(async () => {
-  try {
-    const fetchedSongs = await songsTable.get();
-    console.log("Fetched songs:", fetchedSongs);
-    songs.value = fetchedSongs;
-  } catch (error) {
-    console.error("Error fetching songs:", error.message);
-    console.log("Error details:", error);
-  }
-});
-</script>
-
-<style scoped>
-h1 {
-  text-align: center;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  margin: 1em 0;
-  padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-</style> -->
-
-
 <template>
   <q-page padding>
-    <!-- Search Input -->
     <q-input
-      filled
       v-model="query"
-      debounce="300"
-      label="Search for Worship Songs"
-      @input="searchSongs"
-      class="q-mb-md"
+      placeholder="Search for a song"
+      dense
+      outlined
+      clearable
+      @keyup.enter="searchSong"
+    />
+    <q-btn
+      label="Search"
+      color="primary"
+      @click="searchSong"
+      class="q-mt-md"
     />
 
-    <!-- Loading Indicator -->
-    <q-spinner-dots v-if="loading" size="lg" color="primary" class="q-my-md" />
+    <div v-if="loading" class="q-mt-lg">
+      <q-spinner size="30px" color="primary" />
+      <span class="q-ml-sm">Loading...</span>
+    </div>
 
-    <!-- Song List -->
-    <q-list v-if="songs.length">
-      <q-item
-        v-for="song in songs"
-        :key="song.id"
-        clickable
-        @click="fetchLyrics(song.id, song.name)"
-      >
-        <q-item-section>
-          <q-item-label>{{ song.name }}</q-item-label>
-          <q-item-label caption>Duration: {{ song.duration }}</q-item-label>
-        </q-item-section>
-      </q-item>
-    </q-list>
+    <q-card v-if="error" class="q-mt-lg">
+      <q-card-section>
+        <q-icon name="warning" color="negative" />
+        <span>{{ error }}</span>
+      </q-card-section>
+    </q-card>
 
-    <!-- No Results -->
-    <q-banner v-if="!songs.length && query && !loading" color="negative">
-      No songs found for "{{ query }}".
-    </q-banner>
-
-    <!-- Lyrics Dialog -->
-    <q-dialog v-model="dialogOpen">
-      <q-card>
-        <q-card-section>
-          <div class="text-h6">{{ selectedSong?.name }}</div>
-        </q-card-section>
-        <q-card-section>
-          <pre>{{ lyrics || "Lyrics not available." }}</pre>
-        </q-card-section>
-        <q-card-actions align="right">
-          <q-btn flat label="Close" color="primary" @click="dialogOpen = false" />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+    <q-card v-if="lyrics" class="q-mt-lg">
+      <q-card-section>
+        <h4>{{ songTitle }}</h4>
+        <pre>{{ lyrics }}</pre>
+      </q-card-section>
+    </q-card>
   </q-page>
 </template>
 
-<script lang="ts" setup>
-import { ref } from "vue";
-import axios from "axios";
+<script setup lang="ts">
+import { ref } from 'vue';
 
-interface Song {
-  id: string;
-  name: string;
-  duration: string;
-}
-
-const API_KEY = "U_WS5Sxxbf9hCueQUKI3a";
-const BASE_URL = `https://osdb-api.confidence.sh/rest/${API_KEY}`;
-
-// Reactive properties
-const query = ref("");
-const songs = ref<Song[]>([]);
-const selectedSong = ref<Song | null>(null);
-const lyrics = ref("");
-const dialogOpen = ref(false);
+const query = ref('');
+const songTitle = ref('');
+const lyrics = ref('');
+const error = ref('');
 const loading = ref(false);
 
-// Fetch songs from the OSDB API
-const searchSongs = async () => {
-  if (!query.value.trim()) {
-    songs.value = [];
-    return;
-  }
-
+async function searchSong() {
+  error.value = '';
+  lyrics.value = '';
+  songTitle.value = '';
   loading.value = true;
+
   try {
-    const response = await axios.get(`${BASE_URL}/search/song`, {
-      params: { query: query.value },
-    });
-    songs.value = response.data.data.map((song: any) => ({
-      id: song.id,
-      name: song.name,
-      duration: song.duration || "Unknown",
-    }));
-  } catch (error) {
-    console.error("Error fetching songs:", error);
-    songs.value = [];
+    const response = await fetch(`https://api.openlyrics.org/v1/songs?title=${encodeURIComponent(query.value)}`);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch lyrics.');
+    }
+
+    const text = await response.text();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(text, 'application/xml');
+
+    const titleNode = xmlDoc.querySelector('title');
+    const verseNode = xmlDoc.querySelector('verse > lines');
+
+    if (titleNode && verseNode) {
+      songTitle.value = titleNode.textContent || '';
+      lyrics.value = verseNode.textContent || '';
+    } else {
+      error.value = 'Lyrics not found.';
+    }
+  } catch (err) {
+    error.value = (err as Error).message || 'An error occurred.';
   } finally {
     loading.value = false;
   }
-};
-
-// Fetch lyrics for a specific song
-const fetchLyrics = async (id: string, name: string) => {
-  selectedSong.value = { id, name, duration: "" };
-  lyrics.value = "";
-  dialogOpen.value = true;
-
-  try {
-    const response = await axios.get(`${BASE_URL}/songs/${id}`);
-    lyrics.value = response.data.lyrics || "Lyrics not available.";
-  } catch (error) {
-    console.error("Error fetching lyrics:", error);
-    lyrics.value = "Lyrics not available.";
-  }
-};
+}
 </script>
 
 <style scoped>

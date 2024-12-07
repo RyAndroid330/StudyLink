@@ -29,13 +29,13 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: your_pg_user
-      POSTGRES_PASSWORD: your_pg_password
-      POSTGRES_DB: your_database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: song_db
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U your_pg_user -d your_database']
+      test: ['CMD-SHELL', 'pg_isready -U your_pg_user -d song_db']
       interval: 10s
       timeout: 5s
       retries: 5

@@ -9,6 +9,8 @@
   -Fixed Bible component and started Worship component
 **Dec 7th**
   -Satudary
+  -Catch-up from Dec 4th
+  -Worked on Worship component. had to build my own db couldnt find a funtional API
 **Dec 8th**
   -Sunday
   ----------------------------------------------------------------
