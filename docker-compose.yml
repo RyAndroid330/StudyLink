@@ -23,8 +23,11 @@ services:
       DB_NAME: ${DB_NAME}
       DB_HOST: postgres
       DB_PORT: 5432
+    depends_on:
+      song_db:
+        condition: service_healthy
 
-  postgres:
+  song_db:
     image: postgres:15
     ports:
       - '5432:5432'
@@ -35,7 +38,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U your_pg_user -d song_db']
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d song_db']
       interval: 10s
       timeout: 5s
       retries: 5

@@ -15,7 +15,7 @@
   -Sunday
   ----------------------------------------------------------------
 **Dec 9th**
-  -
+  -Worked on docker compose and link to DB
 **Dec 10th**
   -
 **Dec 11th**

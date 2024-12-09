@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-frontend": "npm --prefix ../frontend run build && rm -rf build && mv ../frontend/.output ./build",
+    "start": "node build/server/index.mjs"
   },
   "keywords": [],
   "author": "",
