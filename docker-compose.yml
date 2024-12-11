@@ -1,44 +1,37 @@
-version: '3.8'
+version: '3'
 services:
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - '3000:3000'
-    volumes:
-      - ./frontend:/app
-    environment:
-      NODE_ENV: development
-
   backend:
     build:
       context: ./backend
     ports:
-      - '3001:3001'
+      - '3000:3000'
     volumes:
       - ./backend:/app
     environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
-      DB_HOST: postgres
-      DB_PORT: 5432
+      DB_HOST: StudyLink
+      DB_PORT: 5433
     depends_on:
-      song_db:
+      StudyLink:
         condition: service_healthy
 
-  song_db:
+  StudyLink:
     image: postgres:15
     ports:
-      - '5432:5432'
+      - '5433:5432'
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: SLAdmin
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: song_db
+      POSTGRES_DB: StudyLink
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./songs/en:/songs/en
+      - pgdata:/var/lib/postgresql/SLdata
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres -d song_db']
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d StudyLink']
       interval: 10s
       timeout: 5s
       retries: 5

@@ -19,7 +19,7 @@
 **Dec 10th**
   -
 **Dec 11th**
-  -
+  -Still working on DB trying to convert xml to postgresql
 **Dec 12th**
   -
 **Dec 13th**
