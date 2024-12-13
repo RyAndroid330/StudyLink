@@ -46,35 +46,13 @@ const error = ref('');
 const loading = ref(false);
 
 async function searchSong() {
-  error.value = '';
-  lyrics.value = '';
-  songTitle.value = '';
-  loading.value = true;
-
   try {
-    const response = await fetch(`https://api.openlyrics.org/v1/songs?title=${encodeURIComponent(query.value)}`);
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch lyrics.');
-    }
-
-    const text = await response.text();
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(text, 'application/xml');
-
-    const titleNode = xmlDoc.querySelector('title');
-    const verseNode = xmlDoc.querySelector('verse > lines');
-
-    if (titleNode && verseNode) {
-      songTitle.value = titleNode.textContent || '';
-      lyrics.value = verseNode.textContent || '';
-    } else {
-      error.value = 'Lyrics not found.';
-    }
-  } catch (err) {
-    error.value = (err as Error).message || 'An error occurred.';
-  } finally {
-    loading.value = false;
+    const response = await fetch(`/api/songs/search/${query.value}`);
+    const data = await response.json();
+    songTitle.value = data.title;
+    lyrics.value = data.lyrics;
+  } catch (error) {
+    console.error(error);
   }
 }
 </script>

@@ -1,4 +1,3 @@
-version: '3'
 services:
   backend:
     build:
@@ -26,8 +25,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: StudyLink
     volumes:
-      - ./songs/en:/songs/en
-      - pgdata:/var/lib/postgresql/SLdata
+      - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
     healthcheck:

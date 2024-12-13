@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-
 import dotenv from 'dotenv';
+import songsRouter from './songs.controller';
 
 dotenv.config();
 
@@ -9,12 +9,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 3001;
+app.use('/api', songsRouter);
 
 app.get('/', (req, res) => {
-  res.send('Backend is running');
+  res.redirect('/api');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
