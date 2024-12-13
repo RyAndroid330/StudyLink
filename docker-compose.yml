@@ -11,7 +11,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
       DB_HOST: StudyLink
-      DB_PORT: 5433
+      DB_PORT: 5432
     depends_on:
       StudyLink:
         condition: service_healthy
@@ -19,7 +19,7 @@ services:
   StudyLink:
     image: postgres:15
     ports:
-      - '5433:5432'
+      - '5432:5432'
     environment:
       POSTGRES_USER: SLAdmin
       POSTGRES_PASSWORD: password

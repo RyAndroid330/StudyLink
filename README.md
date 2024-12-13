@@ -1,5 +1,7 @@
 cd backend
 
+npm run build
+
 npm run build-Frontend
 
 docker compose up -d --build

@@ -21,9 +21,9 @@
 **Dec 11th**
   -Still working on DB trying to convert xml to postgresql
 **Dec 12th**
-  -
+  -Fixed Xml import to DB
 **Dec 13th**
-  -
+  -Troubleshooting backend issues- questioning my life choices
 **Dec 14th**
   -Satudary
 **Dec 15th**
