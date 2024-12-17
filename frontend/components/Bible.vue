@@ -104,9 +104,9 @@ const fetchChapters = async () => {
       );
       const data = await response.json();
       chapters.value = data.data.map((chapter: any) => ({
-        label: String(chapter.number),
+        label: String(Number(chapter.number)),
         value: chapter.id,
-      }));
+      })).filter((chapter: any) => !isNaN(Number(chapter.label)));
     } catch (error) {
       console.error('Error fetching chapters:', error);
     } finally {

@@ -3,9 +3,9 @@ import pg from 'pg';
 const { Client } = pg;
 
 const client = new Client({
-  user: 'postgres',
+  user: 'SLAdmin',
   host: 'localhost',
-  database: 'song_db',
+  database: 'StudyLink',
   password: 'password',
   port: 5432
 });

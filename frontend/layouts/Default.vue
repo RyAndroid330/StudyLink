@@ -15,7 +15,8 @@
         />
 
         <q-btn flat to='/' @click="setSection('home')"> Join A Study </q-btn>
-        <q-btn flat @click="() => setSection('assets')" to='/assets'> Studies </q-btn>
+        <q-btn flat @click="() => setSection('assets')" to='/assets'> Create A Study </q-btn>
+        <q-btn flat @click="() => setSection('Bible')" to='/Bible'> Bible </q-btn>
       </q-toolbar>
     </q-header>
     <q-page-container>
