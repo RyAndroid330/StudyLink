@@ -5,7 +5,7 @@ import * as xml2js from 'xml2js';
 const enFolder = './en';
 const db = new pg.Client({
   host: 'localhost',
-  port: 5432,
+  port: 5433,
   database: 'StudyLink',
   user: 'SLAdmin',
   password: 'password',

@@ -1,6 +1,8 @@
 <template>
   <q-page padding>
-    <q-input
+    <q-card class="custom-card q-ma-md">
+
+      <q-input
       v-model="query"
       placeholder="Search for a song"
       dense
@@ -33,6 +35,7 @@
         <pre>{{ lyrics }}</pre>
       </q-card-section>
     </q-card>
+      </q-card>
   </q-page>
 </template>
 
@@ -62,4 +65,16 @@ pre {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.q-page {
+  padding: 20px;
+}
+
+.custom-card {
+  min-height: 200px;
+  /* max-width: 95dvw; */
+ height: auto;
+  overflow-y: auto;
+ padding: 15px;
+}
+
 </style>

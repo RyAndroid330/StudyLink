@@ -1,12 +1,7 @@
 <template>
   <NuxtLayout :name="layout">
     <div class="row justify-around q-ma-lg">
-      <InfoCard>
-        <template #title>
-          Create A Study
-        </template>
-      </InfoCard>
-     <StudiesList/>
+      <Worship/>
     </div>
   </NuxtLayout>
 </template>

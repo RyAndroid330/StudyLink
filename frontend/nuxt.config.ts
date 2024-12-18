@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@pinia/nuxt', '@vueuse/nuxt', 'nuxt-quasar-ui'],
-  ssr: false,
+  ssr: true,
   quasar: {
     plugins: ['Dialog', 'Notify'],
     cssAddon: true,
@@ -22,5 +22,10 @@ export default defineNuxtConfig({
     // '@glideapps/tables/dist/glide-tables.css'
   ],
   plugins: [{ src: '~/plugins/db.js', mode: 'server' }],
+  nitro: {
+    devProxy: {
+      '/api': 'http://localhost:3000'
+    }
+  },
   compatibilityDate: '2024-09-09'
 });

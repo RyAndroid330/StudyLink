@@ -6,23 +6,23 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-frontend": "npm --prefix ../frontend run build && rm -rf build && mv ../frontend/.output ./build",
     "build": "tsc",
-    "start": "node build/server/index.mjs"
+    "start": "node build/server/index.mjs && src/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/express": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.6",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "pg": "^8.13.1",
     "typescript": "^5.7.2",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
     "@types/pg": "^8.11.10",
     "ts-node-dev": "^2.0.0"

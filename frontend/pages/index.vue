@@ -10,7 +10,6 @@
           <h5>
             Welcome to Study Link! Here you can create lesson plans for a study with others. You can add scripture and worship songs and follow along with a group.
           </h5>
-            <!-- <Worship/> -->
           </div>
         </template>
       </Details>

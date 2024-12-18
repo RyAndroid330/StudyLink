@@ -6,7 +6,7 @@ var xml2js = require('xml2js');
 var enFolder = './en';
 var db = new pg.Client({
   host: 'localhost',
-  port: 5432,
+  port: 5433,
   database: 'StudyLink',
   user: 'SLAdmin',
   password: 'password',

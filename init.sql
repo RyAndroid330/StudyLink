@@ -9,6 +9,8 @@ CREATE TABLE songs (
 CREATE TABLE studies(
   id SERIAL Primary KEY,
   title VARCHAR(255),
+  studyPassword VARCHAR(255),
+  slideNumber INT,
   contentType VARCHAR(255),
   content TEXT
 )
