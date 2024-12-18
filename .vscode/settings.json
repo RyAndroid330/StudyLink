@@ -1,6 +1,5 @@
 {
   "files.associations": {
     "plyconfig.json": "jsonc"
-  },
-  "CodeGPT.apiKey": "grok"
+  }
 }

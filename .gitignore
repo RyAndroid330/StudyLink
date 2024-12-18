@@ -1,0 +1,21 @@
+# Node.js and Nuxt.js files
+node_modules/
+.nuxt/
+dist/
+
+# Build and compilation files
+build/
+public/
+
+# IDE and editor files
+.vscode/
+.idea/
+.editorconfig
+
+# OS and system files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous files
+README.md
+package-lock.json

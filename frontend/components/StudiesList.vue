@@ -19,6 +19,8 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
+
+
 export default {
   name: 'StudiesList',
   setup() {
@@ -26,11 +28,12 @@ export default {
 
     onMounted(async () => {
       try {
-        const response = await axios.get('/studies');
-        studies.value = response.data;
-      } catch (error) {
-        console.error(error);
-      }
+    const response = await axios.get('http://localhost:5000/api/studies');
+    studies.value = response.data;
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching studies:', error);
+  }
     });
 
     return { studies };

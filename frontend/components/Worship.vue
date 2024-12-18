@@ -1,21 +1,22 @@
 <template>
   <q-page padding>
     <q-card class="custom-card q-ma-md">
-
-      <q-input
-      v-model="query"
-      placeholder="Search for a song"
-      dense
-      outlined
-      clearable
-      @keyup.enter="searchSong"
-    />
-    <q-btn
-      label="Search"
-      color="primary"
-      @click="searchSong"
-      class="q-mt-md"
-    />
+<div class="flex" style="align-items: baseline;justify-content: space-between;">
+  <q-input
+  v-model="query"
+  placeholder="Search for a song"
+  dense
+  outlined
+  clearable
+  @keyup.enter="searchSong"
+  />
+  <q-btn
+  label="Search"
+  color="primary"
+  @click="searchSong"
+  class="q-ma-md"
+  />
+</div>
 
     <div v-if="loading" class="q-mt-lg">
       <q-spinner size="30px" color="primary" />
@@ -29,9 +30,9 @@
       </q-card-section>
     </q-card>
 
-    <q-card v-if="lyrics" class="q-mt-lg">
+    <q-card v-if="lyrics" class="q-mt-none">
       <q-card-section>
-        <h4>{{ songTitle }}</h4>
+        <h4 class="q-ma-none">{{ songTitle }}</h4>
         <pre>{{ lyrics }}</pre>
       </q-card-section>
     </q-card>
@@ -41,6 +42,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import axios from 'axios';
 
 const query = ref('');
 const songTitle = ref('');
@@ -50,15 +52,19 @@ const loading = ref(false);
 
 async function searchSong() {
   try {
-    const response = await fetch(`/api/songs/search/${query.value}`);
-    const data = await response.json();
-    songTitle.value = data.title;
-    lyrics.value = data.lyrics;
-  } catch (error) {
-    console.error(error);
+    loading.value = true;
+    const response = await axios.get(`http://localhost:5000/api/songs/search/${query.value}`);
+    const data = response.data;
+    songTitle.value = data[0].title;
+    lyrics.value = data[0].lyrics;
+  } catch (err) {
+    console.error('Error fetching song data:', err);
+  } finally {
+    loading.value = false;
   }
 }
 </script>
+
 
 <style scoped>
 pre {
