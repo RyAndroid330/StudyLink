@@ -34,7 +34,7 @@
 **Dec 17th**
   -Continued on slides component
 **Dec 18th**
-  -
+  -Major rewrite to deal with routing issues. 
 **Dec 19th**
   -
 **Dec 20th**
