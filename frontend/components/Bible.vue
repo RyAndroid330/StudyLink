@@ -4,6 +4,7 @@
       <div class="col flex-grow q-pa-md" style="min-width: 400px; max-width: 50dvw;">
         <!-- Select Book -->
         <q-select
+        id="select-book"
           v-model="selectedBook"
           :options="books"
           label="Select Book"
@@ -16,6 +17,7 @@
 
         <!-- Select Chapter -->
         <q-select
+        id="select-chapter"
           v-model="selectedChapter"
           :options="chapters"
           label="Select Chapter"
@@ -49,7 +51,7 @@
 </div>
 
       <!-- Chapter Text -->
-      <div v-html="chapterText" class="q-pa-md" :style="{ fontSize: fontSize + 'rem' }"></div>
+      <div id="chapter-text" v-html="chapterText" class="q-pa-md" :style="{ fontSize: fontSize + 'rem' }"></div>
     </q-card>
   </q-page>
 </template>

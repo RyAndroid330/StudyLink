@@ -10,14 +10,15 @@
         ]"
       >
         <q-img
+        id="logo"
           src='StudyLink.png'
           style="max-height: 100px; max-width: 100px; z-index: 500; margin: 5px; border-radius: 15px;box-shadow: 2px 2px;"
         />
 
-        <q-btn flat to='/'> Join A Study </q-btn>
-        <q-btn flat to='/assets'> Create A Study </q-btn>
-        <q-btn flat to='/Bible'> Bible </q-btn>
-        <q-btn flat to='/Worship'> Worship </q-btn>
+        <q-btn id="home" flat to='/'> Join A Study </q-btn>
+        <q-btn id="assets" flat to='/assets'> Create A Study </q-btn>
+        <q-btn id="bible" flat to='/Bible'> Bible </q-btn>
+        <q-btn id="worship" flat to='/Worship'> Worship </q-btn>
       </q-toolbar>
     </q-header>
     <q-page-container>

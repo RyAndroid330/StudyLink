@@ -32,7 +32,7 @@
 
     <q-card v-if="lyrics" class="q-mt-none">
       <q-card-section>
-        <h4 class="q-ma-none">{{ songTitle }}</h4>
+        <h4 id= "songTitle" class="q-ma-none">{{ songTitle }}</h4>
         <pre>{{ lyrics }}</pre>
       </q-card-section>
     </q-card>
