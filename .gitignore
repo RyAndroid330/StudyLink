@@ -19,3 +19,7 @@ Thumbs.db
 # Miscellaneous files
 README.md
 package-lock.json
+
+# Local env files
+.env
+.env.*
