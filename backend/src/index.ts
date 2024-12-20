@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: '*' }));
 app.get('/api/studies', async (req, res) => {
-  const users = await pool.query('SELECT * FROM studies WHERE slideNumber =1');
+  const users = await pool.query('SELECT * FROM studies');
   res.json(users.rows);
 });
 

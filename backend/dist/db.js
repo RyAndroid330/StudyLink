@@ -11,6 +11,6 @@ const pool = new pg_1.Pool({
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST || 'db',
     database: process.env.DB_NAME,
-    port: parseInt(process.env.DB_PORT || '5432', 10),
+    port: parseInt(process.env.DB_PORT || '5432'),
 });
 exports.default = pool;

@@ -6,11 +6,16 @@ CREATE TABLE songs (
 );
 
 -- Creat table for Studies
-CREATE TABLE studies(
-  id SERIAL Primary KEY,
+CREATE TABLE studies (
+  id SERIAL PRIMARY KEY,
   title VARCHAR(255),
-  studyPassword VARCHAR(255),
+  studyPassword VARCHAR(255)
+);
+
+CREATE TABLE slides (
+  id SERIAL PRIMARY KEY,
+  study_id INTEGER NOT NULL REFERENCES studies(id),
   slideNumber INT,
   contentType VARCHAR(255),
   content TEXT
-)
+);

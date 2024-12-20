@@ -14,10 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./db"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)({ origin: '*' }));
 app.get('/api/studies', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const users = yield db_1.default.query('SELECT * FROM studies');
+    res.json(users.rows);
+}));
+app.get('/api/songs/search/:searchTerm', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const searchTerm = req.params.searchTerm;
+    const users = yield db_1.default.query('SELECT * FROM songs WHERE title ILIKE $1', [
+        `${searchTerm}%`,
+    ]);
     res.json(users.rows);
 }));
 const PORT = process.env.PORT || 5000;
