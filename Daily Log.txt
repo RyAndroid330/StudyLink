@@ -34,13 +34,15 @@
 **Dec 17th**
   -Continued on slides component
 **Dec 18th**
-  -Major rewrite to deal with routing issues. 
+  -Major rewrite to deal with routing issues.
 **Dec 19th**
-  -
+  -Cypress testing - e2e for songs and navbar
 **Dec 20th**
-  -
+  -bug fixes for cypress and Vue Nuxt conflicts
+  -TDD setup for Study component
 **Dec 21st**
   -Satuday
+    -built Study component
 **Dec 22nd**
   -Sunday
   ----------------------------------------------------------------

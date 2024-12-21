@@ -22,6 +22,13 @@ app.get('/api/studies', (req, res) => __awaiter(void 0, void 0, void 0, function
     const users = yield db_1.default.query('SELECT * FROM studies');
     res.json(users.rows);
 }));
+app.get('/api/study/:study_id/slides', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const study_id = req.params.study_id;
+    const slides = yield db_1.default.query('SELECT * FROM slides WHERE study_id = $1', [
+        study_id,
+    ]);
+    res.json(slides.rows);
+}));
 app.get('/api/songs/search/:searchTerm', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const searchTerm = req.params.searchTerm;
     const users = yield db_1.default.query('SELECT * FROM songs WHERE title ILIKE $1', [

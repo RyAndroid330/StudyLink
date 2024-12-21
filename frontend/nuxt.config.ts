@@ -23,6 +23,7 @@ export default defineNuxtConfig<CustomNuxtConfig>({
         'QPageContainer',
         'QBtn',
         'QImg',
+        'QList',
       ],
       plugins: [],
     },

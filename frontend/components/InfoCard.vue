@@ -37,6 +37,7 @@ const props = defineProps({
 });
 
 const router = useRouter();
+const hover = ref(false);
 </script>
 
 <style>

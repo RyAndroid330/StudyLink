@@ -10,6 +10,13 @@ app.get('/api/studies', async (req, res) => {
   res.json(users.rows);
 });
 
+app.get('/api/study/:study_id', async (req, res) => {
+  const study_id = req.params.study_id;
+  const slides = await pool.query('SELECT * FROM slides WHERE study_id = $1', [
+    study_id,
+  ]);
+  res.json(slides.rows);
+});
 app.get('/api/songs/search/:searchTerm', async (req, res) => {
   const searchTerm = req.params.searchTerm;
   const users = await pool.query('SELECT * FROM songs WHERE title ILIKE $1', [

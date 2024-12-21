@@ -32,3 +32,11 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   }
 });
+
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+
+addMatchImageSnapshotCommand();
+
+Cypress.Commands.add('waitForQuasar', () => {
+  cy.get('.q-layout').should('be.visible');
+});
