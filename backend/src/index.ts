@@ -10,12 +10,21 @@ app.get('/api/studies', async (req, res) => {
   res.json(users.rows);
 });
 
-app.get('/api/study/:study_id', async (req, res) => {
-  const study_id = req.params.study_id;
-  const slides = await pool.query('SELECT * FROM slides WHERE study_id = $1', [
+app.get('/api/studies/:id', async (req, res) => {
+  const study_id = req.params.id;
+  const slides = await pool.query('SELECT * FROM studies WHERE id = $1', [
     study_id,
   ]);
   res.json(slides.rows);
+});
+app.get('/api/study/:study_id/slide/:slide_number', async (req, res) => {
+  const study_id = req.params.study_id;
+  const slide_number = req.params.slide_number;
+  const slide = await pool.query(
+    'SELECT * FROM slides WHERE study_id = $1 AND slidenumber = $2',
+    [study_id, slide_number]
+  );
+  res.json(slide.rows[0]);
 });
 app.get('/api/songs/search/:searchTerm', async (req, res) => {
   const searchTerm = req.params.searchTerm;

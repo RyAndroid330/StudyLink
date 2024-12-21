@@ -13,6 +13,7 @@ interface CustomNuxtConfig extends NuxtConfig {
 export default defineNuxtConfig<CustomNuxtConfig>({
   // ...
   modules: ['nuxt-quasar-ui'],
+
   quasar: {
     extras: ['roboto-font', 'material-icons'],
     framework: {
@@ -28,4 +29,6 @@ export default defineNuxtConfig<CustomNuxtConfig>({
       plugins: [],
     },
   },
+
+  compatibilityDate: '2024-12-21',
 });

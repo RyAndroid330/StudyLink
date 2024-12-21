@@ -5,7 +5,7 @@
         <slot name="title" />
       </div>
       <div class="row">
-        <slot name="info" />
+        <slot class="col flex-grow" name="info" />
       </div>
     </div>
   </q-card>

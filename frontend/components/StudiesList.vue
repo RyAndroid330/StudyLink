@@ -32,6 +32,9 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router'; // Import the useRouter hook
+import useSlideState from '../composeables/useSlideState';
+
+const { currentSlide } = useSlideState();
 
 interface Study {
   id: number;
@@ -60,6 +63,7 @@ export default {
       console.log('Edit button pressed');
     },
     openStudy(study: Study) {
+      currentSlide.value = 1;
       this.router.push(`/study/${study.id}`);
       console.log('study button pressed');
     },
