@@ -1,6 +1,6 @@
 <template>
-  <q-card class="custom-card q-ma-md">
-    <div class="col flex-grow q-pa-md">
+  <q-card class="custom-card q-pa-sm row items-center justify-around" style="width:70vw;">
+
       <q-btn
         id="previous-button"
         @click="adjustSlide(-1)"
@@ -20,7 +20,7 @@
         size="xs"
         class="q-mx-xs"
       />
-    </div>
+
   </q-card>
 </template>
 

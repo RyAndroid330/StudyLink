@@ -3,6 +3,7 @@
     <q-header elevated>
       <q-toolbar
         :class="[
+          'scroll',
           'navContainer',
           toolbarClass,
           'flex',
@@ -12,7 +13,7 @@
         <q-img
         id="logo"
           src='StudyLink.png'
-          style="max-height: 100px; max-width: 100px; z-index: 500; margin: 5px; border-radius: 15px;box-shadow: 2px 2px;"
+          style="max-height: 100px; max-width: 100px; min-width: 75px; z-index: 500; margin: 5px; border-radius: 15px;box-shadow: 2px 2px;"
         />
 
         <q-btn id="home" flat to='/'> Join A Study </q-btn>

@@ -2,15 +2,19 @@
   <NuxtLayout :name="layout">
     <div class="flex justify-around q-ma-lg">
       <Details>
-        <template #title >
-          <h6 id="study-title">{{ studyTitle }}</h6>
+        <template #title id="study-title">
+         <div id="study-title">
+          {{ studyTitle }}
+        </div>
 
         </template>
-        <template #info id="study-content">
-          <div  id="study-content">
-            {{ studyContent }}
+        <template #info >
+          <div class="flex flex-grow justify-center" id="study-content">
+           <div>
+              {{ studyContent }}
+           </div>
+            <slideNav></slideNav>
           </div>
-          <slideNav></slideNav>
         </template>
       </Details>
     </div>

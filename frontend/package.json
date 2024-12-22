@@ -13,12 +13,23 @@
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.2",
     "@quasar/extras": "^1.16.15",
+    "@types/cypress": "^0.1.6",
+    "@types/mocha": "^10.0.10",
     "axios": "^1.7.9",
-    "nuxt": "^3.14.1592",
+    "cypress": "^13.17.0",
     "nuxt-quasar-ui": "^2.1.7",
     "quasar": "^2.17.5",
     "typescript": "^5.7.2",
-    "vue": "latest",
     "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.3",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "@cypress/vue": "^6.0.1",
+    "@nuxt/devtools": "^1.6.4",
+    "cypress-image-snapshot": "^4.0.1",
+    "nuxt": "^3.14.1592",
+    "vite": "^5.4.11",
+    "vue": "^3.5.13"
   }
 }

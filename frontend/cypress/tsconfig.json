@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6", "dom"],
+    "types": ["cypress", "mocha"],
+    "moduleResolution": "node"
+  },
+  "include": ["**/*.ts", "e2e/BDD.ts"]
+}

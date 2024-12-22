@@ -12,7 +12,10 @@ interface CustomNuxtConfig extends NuxtConfig {
 
 export default defineNuxtConfig<CustomNuxtConfig>({
   // ...
-  modules: ['nuxt-quasar-ui'],
+  modules: ['nuxt-quasar-ui', '@nuxt/devtools'],
+  devtools: {
+    enabled: true,
+  },
 
   quasar: {
     extras: ['roboto-font', 'material-icons'],
