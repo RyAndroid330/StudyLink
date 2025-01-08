@@ -15,9 +15,9 @@
           class="transparent-background"
           color="primary"
           flat
+          :to="'/create-study'"
           @mouseover="hover = true"
           @mouseleave="hover = false"
-          @click="navigateToItem"
         >
           <span style="margin-right: 8px;">New Study</span>
         </q-btn>
@@ -27,7 +27,9 @@
 </template>
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const props = defineProps({
   item: {

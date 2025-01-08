@@ -1,5 +1,5 @@
 <template>
-  <q-card class="custom-card q-pa-sm row items-center justify-around" style="width:70vw;">
+  <q-card class="custom-card q-pa-sm row items-center justify-around" style="width:70vw; height: 50px;">
 
       <q-btn
         id="previous-button"
